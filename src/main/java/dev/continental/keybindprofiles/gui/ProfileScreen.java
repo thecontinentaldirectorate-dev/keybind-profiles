@@ -117,6 +117,20 @@ public class ProfileScreen extends Screen {
 		}
 	}
 
+	/**
+	 * Screen.init only runs the first time a screen is shown, so coming back from a confirm prompt
+	 * or out of a subfolder would otherwise leave the list exactly as it was when the screen first
+	 * opened. That went badly: deleting a profile left its row behind, and clicking that row again
+	 * threw NoSuchFileException at a file that was already gone. added() runs on every show.
+	 */
+	@Override
+	public void added() {
+		if (this.list != null) {
+			this.list.reload();
+			this.updateButtons();
+		}
+	}
+
 	@Override
 	public void onClose() {
 		this.minecraft.gui.setScreen(this.parent);
