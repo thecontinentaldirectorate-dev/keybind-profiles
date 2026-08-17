@@ -1,6 +1,6 @@
-package dev.continental.keybindprofiles.gui;
+package dev.dailywool.keybindprofiles.gui;
 
-import dev.continental.keybindprofiles.ProfileStore;
+import dev.dailywool.keybindprofiles.ProfileStore;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;

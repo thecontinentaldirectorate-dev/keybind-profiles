@@ -1,8 +1,8 @@
-package dev.continental.keybindprofiles.gui;
+package dev.dailywool.keybindprofiles.gui;
 
-import dev.continental.keybindprofiles.KeybindProfiles;
-import dev.continental.keybindprofiles.Profile;
-import dev.continental.keybindprofiles.ProfileStore;
+import dev.dailywool.keybindprofiles.KeybindProfiles;
+import dev.dailywool.keybindprofiles.Profile;
+import dev.dailywool.keybindprofiles.ProfileStore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphicsExtractor;

@@ -1,4 +1,4 @@
-package dev.continental.keybindprofiles;
+package dev.dailywool.keybindprofiles;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

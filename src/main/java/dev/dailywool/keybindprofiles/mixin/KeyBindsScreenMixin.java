@@ -1,8 +1,8 @@
-package dev.continental.keybindprofiles.mixin;
+package dev.dailywool.keybindprofiles.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.continental.keybindprofiles.ProfileStore;
-import dev.continental.keybindprofiles.gui.ProfileScreen;
+import dev.dailywool.keybindprofiles.ProfileStore;
+import dev.dailywool.keybindprofiles.gui.ProfileScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.LinearLayout;

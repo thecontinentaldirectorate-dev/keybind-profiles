@@ -1,4 +1,4 @@
-package dev.continental.keybindprofiles;
+package dev.dailywool.keybindprofiles;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;

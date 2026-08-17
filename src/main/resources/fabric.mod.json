@@ -5,7 +5,7 @@
 	"name": "Keybind Profiles",
 	"description": "Save your controls as named profiles and switch between them from the keybinds menu. Profiles can be sorted into folders.",
 	"authors": [
-		"thecontinentaldirectorate-dev"
+		"dailywool"
 	],
 	"contact": {
 		"homepage": "https://github.com/thecontinentaldirectorate-dev/keybind-profiles",
@@ -13,10 +13,11 @@
 		"issues": "https://github.com/thecontinentaldirectorate-dev/keybind-profiles/issues"
 	},
 	"license": "MIT",
+	"icon": "assets/keybind-profiles/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"dev.continental.keybindprofiles.KeybindProfiles"
+			"dev.dailywool.keybindprofiles.KeybindProfiles"
 		]
 	},
 	"mixins": [

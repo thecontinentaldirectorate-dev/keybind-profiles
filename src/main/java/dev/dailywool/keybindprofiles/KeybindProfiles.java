@@ -1,4 +1,4 @@
-package dev.continental.keybindprofiles;
+package dev.dailywool.keybindprofiles;
 
 import net.fabricmc.api.ClientModInitializer;
 import org.slf4j.Logger;

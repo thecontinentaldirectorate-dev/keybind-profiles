@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "dev.continental.keybindprofiles.mixin",
+	"package": "dev.dailywool.keybindprofiles.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
 		"KeyBindsScreenMixin"
