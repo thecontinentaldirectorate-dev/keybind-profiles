@@ -21,16 +21,22 @@ public class KeyBindsScreenMixin {
 	 * whatever you give it, so a fourth child added there would sit on top of that row instead of
 	 * beside it.
 	 */
+	// Vanilla's two buttons are 150 each, which already comes to 308 of the 320 the game guarantees
+	// a GUI is wide. A third one at any width would push the row off both edges, so all three get
+	// narrowed to fit: 3 * 100 plus two 8px gaps is 316.
+	private static final int BUTTON_WIDTH = 100;
+
 	@Inject(method = "addFooter", at = @At("TAIL"))
 	private void keybindProfiles$addProfilesButton(CallbackInfo ci, @Local LinearLayout bottomButtons) {
 		KeyBindsScreen self = (KeyBindsScreen) (Object) this;
 
+		bottomButtons.visitWidgets(w -> w.setWidth(BUTTON_WIDTH));
 		bottomButtons.addChild(Button.builder(
 				Component.translatable("keybindprofiles.open"),
 				b -> {
 					Minecraft mc = Minecraft.getInstance();
 					mc.gui.setScreen(new ProfileScreen(self, mc.options));
 				}
-		).width(80).build());
+		).width(BUTTON_WIDTH).build());
 	}
 }
