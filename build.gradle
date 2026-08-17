@@ -9,6 +9,13 @@ base {
 	archivesName = project.archives_base_name
 }
 
+// The jar carries the game version in its file name so the download is self describing, but
+// fabric.mod.json keeps the plain mod version. Sticking the game version in there too would
+// make loader read "26.2" as a semver prerelease tag and sort 1.0.0-26.2 below 1.0.0.
+tasks.withType(AbstractArchiveTask).configureEach {
+	archiveVersion = "${project.mod_version}-${project.minecraft_version}"
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
