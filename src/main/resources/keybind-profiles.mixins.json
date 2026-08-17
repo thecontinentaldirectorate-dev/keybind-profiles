@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "dev.continental.keybindprofiles.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"KeyBindsScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

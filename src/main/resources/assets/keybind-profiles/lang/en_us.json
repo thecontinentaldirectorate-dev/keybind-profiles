@@ -1,0 +1,29 @@
+{
+	"keybindprofiles.title": "Keybind Profiles",
+	"keybindprofiles.open": "Profiles...",
+
+	"keybindprofiles.load": "Load",
+	"keybindprofiles.save": "Save Current",
+	"keybindprofiles.newFolder": "New Folder",
+	"keybindprofiles.rename": "Rename",
+	"keybindprofiles.delete": "Delete",
+
+	"keybindprofiles.prompt.save": "Name this profile",
+	"keybindprofiles.prompt.folder": "Name the folder",
+	"keybindprofiles.prompt.rename": "New name",
+
+	"keybindprofiles.status.saved": "Saved %s",
+	"keybindprofiles.status.loaded": "Loaded %s",
+	"keybindprofiles.status.loadedPartly": "Loaded %s, but %s keys in it could not be applied",
+	"keybindprofiles.status.exists": "There is already something called %s here",
+	"keybindprofiles.status.failed": "That did not work, see the log for why",
+
+	"keybindprofiles.confirm.title": "Are you sure?",
+	"keybindprofiles.confirm.overwrite": "%s already exists. Overwrite it with your current keys?",
+	"keybindprofiles.confirm.deleteProfile": "Delete the profile %s?",
+	"keybindprofiles.confirm.deleteFolder": "Delete the folder %s and everything inside it?",
+
+	"keybindprofiles.narrate.parent": "Go up one folder",
+	"keybindprofiles.narrate.folder": "Folder %s",
+	"keybindprofiles.narrate.profile": "Profile %s"
+}

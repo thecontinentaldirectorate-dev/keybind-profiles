@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "keybind-profiles",
+	"version": "${version}",
+	"name": "Keybind Profiles",
+	"description": "Save your controls as named profiles and switch between them from the keybinds menu. Profiles can be sorted into folders.",
+	"authors": [
+		"thecontinentaldirectorate-dev"
+	],
+	"contact": {
+		"homepage": "https://github.com/thecontinentaldirectorate-dev/keybind-profiles",
+		"sources": "https://github.com/thecontinentaldirectorate-dev/keybind-profiles",
+		"issues": "https://github.com/thecontinentaldirectorate-dev/keybind-profiles/issues"
+	},
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.continental.keybindprofiles.KeybindProfiles"
+		]
+	},
+	"mixins": [
+		{
+			"config": "keybind-profiles.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25"
+	}
+}
