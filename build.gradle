@@ -12,6 +12,12 @@ base {
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Loader on its own does not show a mod's assets folder to the resource manager, so without
+	// this the lang file is never read and every button renders its translation key instead.
+	// Bundled rather than depended on, since one module is a lot to ask people to install the
+	// whole of Fabric API for.
+	implementation include(fabricApi.module('fabric-resource-loader-v0', project.fabric_version))
 }
 
 processResources {
