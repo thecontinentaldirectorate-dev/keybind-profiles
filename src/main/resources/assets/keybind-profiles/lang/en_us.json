@@ -23,7 +23,6 @@
 	"keybindprofiles.confirm.deleteProfile": "Delete the profile %s?",
 	"keybindprofiles.confirm.deleteFolder": "Delete the folder %s and everything inside it?",
 
-	"keybindprofiles.narrate.parent": "Go up one folder",
 	"keybindprofiles.narrate.folder": "Folder %s",
 	"keybindprofiles.narrate.profile": "Profile %s"
 }

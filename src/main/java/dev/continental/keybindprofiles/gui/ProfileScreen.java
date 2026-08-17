@@ -26,8 +26,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * One screen per folder. Opening a folder pushes another of these with the parent screen behind
+ * it, so Done and Escape walk back up the way they do everywhere else in the game.
+ */
 public class ProfileScreen extends Screen {
-	private static final Component TITLE = Component.translatable("keybindprofiles.title");
 	private static final Component CONFIRM_TITLE = Component.translatable("keybindprofiles.confirm.title");
 	private static final Component FAILED = Component.translatable("keybindprofiles.status.failed");
 
@@ -40,26 +43,33 @@ public class ProfileScreen extends Screen {
 
 	private final Screen parent;
 	private final Options options;
+	private final Path dir;
 	private final HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this, HEADER_HEIGHT, FOOTER_HEIGHT);
 
-	private Path dir = ProfileStore.root();
 	private EntryList list;
 	private Button loadButton;
 	private Button renameButton;
 	private Button deleteButton;
 	private Component status;
 
-	public ProfileScreen(Screen parent, Options options) {
-		super(TITLE);
+	public ProfileScreen(Screen parent, Options options, Path dir) {
+		super(titleFor(dir));
 		this.parent = parent;
 		this.options = options;
+		this.dir = dir;
+	}
+
+	private static Component titleFor(Path dir) {
+		return dir.equals(ProfileStore.root())
+				? Component.translatable("keybindprofiles.title")
+				: Component.literal(ProfileStore.displayName(dir));
 	}
 
 	@Override
 	protected void init() {
 		LinearLayout header = this.layout.addToHeader(LinearLayout.vertical().spacing(4));
 		header.defaultCellSetting().alignHorizontallyCenter();
-		header.addChild(new StringWidget(TITLE, this.font));
+		header.addChild(new StringWidget(this.title, this.font));
 		header.addChild(new StringWidget(this.breadcrumb(), this.font));
 
 		this.list = this.layout.addToContents(new EntryList(this.minecraft));
@@ -117,21 +127,16 @@ public class ProfileScreen extends Screen {
 		return Component.literal(rel.isEmpty() ? "/" : "/" + rel);
 	}
 
-	private void navigate(Path target) {
-		this.dir = target;
-		this.status = null;
-		// The breadcrumb is a StringWidget, so its width is fixed when it is built. Rebuilding is
-		// cheaper than trying to resize it in place.
-		this.rebuildWidgets();
+	private void open(Path folder) {
+		this.minecraft.gui.setScreen(new ProfileScreen(this, this.options, folder));
 	}
 
 	private void updateButtons() {
 		Row selected = this.list == null ? null : this.list.getSelected();
-		boolean editable = selected != null && selected.kind != Kind.PARENT;
 
 		this.loadButton.active = selected != null && selected.kind == Kind.PROFILE;
-		this.renameButton.active = editable;
-		this.deleteButton.active = editable;
+		this.renameButton.active = selected != null;
+		this.deleteButton.active = selected != null;
 	}
 
 	private void loadSelected() {
@@ -210,7 +215,7 @@ public class ProfileScreen extends Screen {
 	private void promptRename() {
 		Row selected = this.list.getSelected();
 
-		if (selected == null || selected.kind == Kind.PARENT) {
+		if (selected == null) {
 			return;
 		}
 
@@ -244,7 +249,7 @@ public class ProfileScreen extends Screen {
 	private void promptDelete() {
 		Row selected = this.list.getSelected();
 
-		if (selected == null || selected.kind == Kind.PARENT) {
+		if (selected == null) {
 			return;
 		}
 
@@ -272,7 +277,6 @@ public class ProfileScreen extends Screen {
 	}
 
 	private enum Kind {
-		PARENT,
 		FOLDER,
 		PROFILE
 	}
@@ -298,10 +302,6 @@ public class ProfileScreen extends Screen {
 		void reload() {
 			List<Row> rows = new ArrayList<>();
 			Path here = ProfileScreen.this.dir;
-
-			if (!here.equals(ProfileStore.root())) {
-				rows.add(new Row(here.getParent(), Kind.PARENT, ".."));
-			}
 
 			try {
 				for (Path p : ProfileStore.folders(here)) {
@@ -362,18 +362,16 @@ public class ProfileScreen extends Screen {
 
 		private void activate() {
 			switch (this.kind) {
-				case PARENT, FOLDER -> ProfileScreen.this.navigate(this.target);
+				case FOLDER -> ProfileScreen.this.open(this.target);
 				case PROFILE -> ProfileScreen.this.loadSelected();
 			}
 		}
 
 		@Override
 		public Component getNarration() {
-			String key = switch (this.kind) {
-				case PARENT -> "keybindprofiles.narrate.parent";
-				case FOLDER -> "keybindprofiles.narrate.folder";
-				case PROFILE -> "keybindprofiles.narrate.profile";
-			};
+			String key = this.kind == Kind.FOLDER
+					? "keybindprofiles.narrate.folder"
+					: "keybindprofiles.narrate.profile";
 
 			return Component.translatable(key, this.name);
 		}

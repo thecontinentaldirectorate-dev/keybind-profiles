@@ -10,8 +10,8 @@ bottom.
 
 - **Save Current** writes your keys right now into a new profile, in whichever folder you are in.
 - **Load** applies the selected profile. Double clicking a profile does the same thing.
-- **New Folder** creates a folder where you are. Double click a folder to go in, and use `..` to
-  come back out.
+- **New Folder** creates a folder where you are. Double click a folder to open it. Each folder gets
+  its own screen, so Done or Escape takes you back out one level at a time.
 - **Rename** and **Delete** work on whatever is selected. Deleting a folder deletes what is in it.
 
 ## Where profiles are kept

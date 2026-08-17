@@ -1,6 +1,7 @@
 package dev.continental.keybindprofiles.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import dev.continental.keybindprofiles.ProfileStore;
 import dev.continental.keybindprofiles.gui.ProfileScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -35,7 +36,7 @@ public class KeyBindsScreenMixin {
 				Component.translatable("keybindprofiles.open"),
 				b -> {
 					Minecraft mc = Minecraft.getInstance();
-					mc.gui.setScreen(new ProfileScreen(self, mc.options));
+					mc.gui.setScreen(new ProfileScreen(self, mc.options, ProfileStore.root()));
 				}
 		).width(BUTTON_WIDTH).build());
 	}
